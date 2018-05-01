@@ -244,6 +244,18 @@ class TextPreProcessor:
 
         return _words
 
+    @lru_cache(maxsize=4096)
+    def handle_general_word_segment_and_spelling(self, m):
+        """
+        :param m:
+        :return:
+        """
+        text = m.group()
+        text = self.segmenter.segment(text)
+
+
+        return text
+
     def pre_process_doc(self, doc):
 
         doc = re.sub(r' +', ' ', doc)  # remove repeating spaces
@@ -277,8 +289,23 @@ class TextPreProcessor:
             doc = doc.replace("<" + item + ">", '')
 
         ###########################
+        # segment other words not hashtags
+        ###########################
+
+        # doc = self.regexes['not_hashtag'].sub(
+                # lambda w: self.handle_general_word_segment_and_spelling(w), doc)
+
+        # for word in doc.split(" "):
+            # if(not word.startswith('#')):
+                # word = self.segmenter.segment(word)
+            # new_doc.append(word)
+        # doc = " ".join(new_doc)
+
+
+        ###########################
         # unpack hashtags
         ###########################
+
         if self.unpack_hashtags:
             doc = self.regexes["hashtag"].sub(
                 lambda w: self.handle_hashtag_match(w), doc)

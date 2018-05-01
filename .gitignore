@@ -17,3 +17,5 @@ ekphrasis/examples/word_segmentation-Copy1.ipynb
 ekphrasis/stats/**
 ekphrasis/utils/__pycache__/
 /local_install.bat
+
+.DS_Store
