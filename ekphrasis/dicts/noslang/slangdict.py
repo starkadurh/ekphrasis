@@ -610,7 +610,7 @@ slangdict = {
     "bstrd": "bitched",
     "bsx": "bisexual",
     "bsxc": "be sexy",
-    "bt": "bit torrent",
+    "bt": "but",
     "btb": "by the by",
     "btch": "bitch",
     "btcn": "Better than Chuck Norris",
@@ -3916,6 +3916,7 @@ slangdict = {
     "rta": "read the article",
     "rtard": "retard",
     "rtbq": "Read The Blinking Question",
+    "rt": "retweet",
     "rtf": "return the favor",
     "rtfa": "read the fucking article",
     "rtffp": "Read the fucking front page",
@@ -5446,5 +5447,7 @@ slangdict = {
 
 # remove one char entries
 slangdict = {k: v for k, v in slangdict.items() if len(k.strip(" ")) > 1}
+
+slangdict = {k.lower(): v.lower() for k, v in slangdict.items()}
 
 pickle.dump(slangdict, open("slangdict.pickle", "wb"))
